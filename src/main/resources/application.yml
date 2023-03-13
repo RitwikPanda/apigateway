@@ -4,3 +4,18 @@ server:
 eureka:
   instance:
     hostname: localhost
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+        - id: server-one-service
+          uri: lb://server-one-user
+          predicates:
+            - Path=/user/**
+        - id: server-two-contact
+          uri: lb://server-two-contact
+          predicates:
+            - Path=/contact/**
